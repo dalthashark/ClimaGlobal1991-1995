@@ -27,6 +27,30 @@ function formatMonth(value) {
   return `${monthNames[Number(month) - 1]} '${year.slice(2)}`
 }
 
+function PieTooltip({ active, payload, coordinate, chartWidth }) {
+  const item = payload?.[0]
+  if (!active || !item) return null
+
+  const showOnLeft = chartWidth > 0 && coordinate?.x > chartWidth / 2
+  const label = item.name || item.payload?.name || 'Registro'
+  const value = Number(item.value ?? 0).toLocaleString('es-PE')
+  const accent = item.color || item.payload?.fill || mint
+
+  return (
+    <div
+      className={`pie-tooltip ${showOnLeft ? 'pie-tooltip-left' : 'pie-tooltip-right'}`}
+      style={{ '--tooltip-accent': accent }}
+    >
+      <span className="pie-tooltip-anchor" />
+      <span className="pie-tooltip-swatch" />
+      <div className="pie-tooltip-copy">
+        <span className="pie-tooltip-label">{label}</span>
+        <strong>{value} <small>días</small></strong>
+      </div>
+    </div>
+  )
+}
+
 function ChartFrame({ number, title, subtitle, explanation, children }) {
   return (
     <article className="chart-card">
@@ -49,6 +73,7 @@ function ChartFrame({ number, title, subtitle, explanation, children }) {
 
 function ChartVisuals() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [pieChartWidth, setPieChartWidth] = useState(0)
 
   const charts = [
     <ChartFrame
@@ -76,14 +101,14 @@ function ChartVisuals() {
       subtitle="Distribución de los días con ocurrencia registrada por fenómeno"
       explanation="La lluvia o llovizna es el fenómeno más frecuente. La niebla y las tormentas aparecen con menor frecuencia; no se registraron tornados en este conjunto."
     >
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" onResize={setPieChartWidth}>
         <PieChart>
           <Pie data={data.events.filter(item => item.days > 0)} dataKey="days" nameKey="name" innerRadius="48%" outerRadius="72%" paddingAngle={3} stroke="none">
             {data.events.filter(item => item.days > 0).map((item, index) => (
               <Cell key={item.name} fill={palette[index % palette.length]} />
             ))}
           </Pie>
-          <Tooltip contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
+          <Tooltip content={<PieTooltip chartWidth={pieChartWidth} />} offset={0} wrapperStyle={{ outline: 'none', zIndex: 30 }} />
           <Legend verticalAlign="bottom" align="center" wrapperStyle={legendStyle} />
         </PieChart>
       </ResponsiveContainer>
@@ -203,7 +228,7 @@ function ChartVisuals() {
               <Cell key={item.name} fill={index === 0 ? '#83a9d4' : mint} />
             ))}
           </Pie>
-          <Tooltip contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
+          <Tooltip content={<PieTooltip chartWidth={pieChartWidth} />} offset={0} wrapperStyle={{ outline: 'none', zIndex: 30 }} />
           <Legend verticalAlign="bottom" align="center" wrapperStyle={legendStyle} />
         </PieChart>
       </ResponsiveContainer>
