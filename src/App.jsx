@@ -95,8 +95,8 @@ function App() {
         <section className="hero" id="overview">
           <div className="hero-copy">
             <div className="eyebrow"><span className="eyebrow-line"/> OBSERVATORIO CLIMÁTICO GLOBAL</div>
-            <h1>Comprender el clima.<br/><em>Anticipar el cambio.</em></h1>
-            <p>Un espacio de análisis y visualización de datos climáticos correspondientes al periodo 1991–1995, con apoyo de herramientas de inteligencia artificial.</p>
+            <h1>Explorar el tiempo.<br/><em>Entender sus patrones.</em></h1>
+            <p>Análisis exploratorio de datos meteorológicos diarios de 1991–1995. El notebook utiliza Pandas para limpiar y preparar el archivo 82210-1.xlsx, y Matplotlib para estudiar temperatura, humedad, presión, viento, precipitación y fenómenos meteorológicos.</p>
             <div className="hero-meta"><span><CalendarDays size={15}/> 1991 — 1995</span><span><Globe2 size={15}/> Perspectiva global</span></div>
           </div>
           <div className="hero-art" aria-hidden="true">
@@ -123,8 +123,8 @@ function App() {
             <article className="context-main">
               <div className="context-icon"><Globe2 size={22}/></div>
               <h3>El clima como sistema global</h3>
-              <p>El análisis climático permite estudiar cómo varían las condiciones atmosféricas a lo largo del tiempo. Este proyecto presenta los datos y resultados obtenidos para el periodo 1991–1995, de acuerdo con el trabajo desarrollado en la Fase 1.</p>
-              <div className="context-callout"><Sparkles size={17}/><span>El objetivo de este dashboard es transformar los resultados técnicos en información visual, clara y accesible.</span></div>
+              <p>Este proyecto realiza un análisis exploratorio de registros meteorológicos diarios del periodo 1991–1995. Según el notebook, los datos se cargan desde el archivo 82210-1.xlsx, se limpian con Pandas (los guiones se convierten en valores nulos y las variables meteorológicas a formato numérico) y se organizan mediante una columna Fecha para analizarlos con Matplotlib.</p>
+              <div className="context-callout"><Sparkles size={17}/><span>Variables estudiadas: temperatura media, máxima y mínima; presión atmosférica; humedad relativa; precipitación; visibilidad; velocidad del viento y registros de fenómenos como niebla, lluvia, nieve, granizo, tormentas y tornados.</span></div>
             </article>
             <article className="context-side">
               <div className="mini-icon"><Waves size={20}/></div><h3>¿Qué encontrarás aquí?</h3>
@@ -134,7 +134,7 @@ function App() {
         </section>
 
         <section className="section-block" id="charts">
-          <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Espacio reservado para presentar los gráficos de Matplotlib generados durante la Fase 1.</p></div><span className="section-index">02 / 03</span></div>
+          <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Catálogo de los 10 gráficos definidos en el notebook de Pandas y Matplotlib. Se mostrarán con los valores del Excel original.</p></div><span className="section-index">02 / 03</span></div>
           <div className="charts-grid">
             {chartCatalog.map(item => <ChartPlaceholder key={item[0]} item={item}/>)}
           </div>
@@ -153,7 +153,7 @@ function App() {
           </div>
         </section>
 
-        <footer className="footer"><div className="footer-brand"><CloudSun size={18}/><strong>ClimateIQ</strong><span>·</span><span>Dashboard académico</span></div><span>Proyecto de análisis climático · 1991–1995</span></footer>
+        <footer className="footer"><div className="footer-brand"><CloudSun size={18}/><strong>ClimateIQ</strong><span>·</span><span>Dashboard académico</span></div><span>Análisis meteorológico · 82210-1.xlsx · 1991–1995</span></footer>
       </div>
     </main>
   </div>
