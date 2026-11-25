@@ -1,48 +1,63 @@
 # Climate Intelligence — 1991–1995
 
-Dashboard web para presentar el análisis climático desarrollado en la Fase 1 de Google Colab.
+Dashboard web para explorar registros meteorológicos diarios del periodo 1991–1995.
 
-LINK VERCEL: [Clima-global(https://clima-global1991-1995.vercel.app/)
+**Demo:** [Abrir dashboard en Vercel](https://clima-global1991-1995.vercel.app/)
 
-## Estado
+## Funcionalidades
 
-- Interfaz inicial del dashboard.
-- Sección de contexto y visualizaciones preparada para incorporar los gráficos reales de Matplotlib.
-- Sección de modelo IA preparada para conectar el modelo entrenado.
+- Resumen del periodo y contexto del análisis.
+- Diez visualizaciones interactivas, con navegación individual:
+  1. Evolución mensual de la temperatura media.
+  2. Frecuencia de fenómenos meteorológicos.
+  3. Temperatura media por mes.
+  4. Registros por fenómeno meteorológico.
+  5. Relación entre temperatura y humedad, con línea de tendencia.
+  6. Distribución de temperaturas.
+  7. Velocidad media del viento por año.
+  8. Días con y sin precipitación.
+  9. Precipitación acumulada por mes.
+  10. Precipitación total por año.
+- Diseño adaptable a móvil y escritorio.
 
-> Importante: los gráficos, métricas y predicciones reales deben importarse desde el notebook de la Fase 1. No se muestran cifras ficticias como resultados científicos.
+## Datos y metodología
 
-## Desarrollo
+El dashboard carga sus visualizaciones desde [`src/data/climateData.json`](src/data/climateData.json). El conjunto contiene 1,826 registros diarios del 1 de enero de 1991 al 31 de diciembre de 1995. La línea temporal de temperatura contiene 60 promedios mensuales; las comparaciones mensuales resumen los cinco años y las comparaciones anuales muestran cinco valores. El diagrama de temperatura y humedad utiliza una muestra de 97 observaciones.
+
+La documentación previa identifica como fuente el archivo `82210-1.xlsx`, hoja `Sheet1`, y señala que los guiones se tratan como valores faltantes y no se imputan. El archivo Excel y el notebook de Colab no están incluidos en este repositorio, por lo que las transformaciones y la procedencia no pueden reproducirse aquí de forma independiente. Las unidades y la ubicación/cobertura geográfica tampoco están especificadas en el código; consulta la fuente original antes de interpretar o reutilizar las cifras.
+
+Los registros de distintos fenómenos meteorológicos pueden coincidir en un mismo día. Por ello, el gráfico circular de fenómenos compara las ocurrencias registradas por categoría y no representa necesariamente una partición de días únicos.
+
+Este proyecto presenta análisis exploratorio: no incluye un modelo predictivo entrenado ni una API de inferencia.
+
+## Desarrollo local
+
+Requisitos: Node.js y npm, en versiones compatibles con Vite 6.
 
 ```bash
 npm install
 npm run dev
 ```
 
+Para generar y previsualizar la compilación de producción:
+
+```bash
+npm run build
+npm run preview
+```
+
 ## Tecnologías
 
-- React + Vite
+- React 18
+- Vite 6
 - Recharts
 - Lucide React
 - CSS responsive
 
 ## Despliegue
 
-Configurar el proyecto en Vercel con framework Vite y comando de build `npm run build`, directorio de salida `dist`.
+El proyecto está desplegado en Vercel. Para desplegar una copia, configura el proyecto con el framework Vite, el comando de compilación `npm run build` y el directorio de salida `dist`.
 
-## Integración pendiente
+## Atribuciones
 
-Para conectar los resultados reales, añadir los PNG exportados desde Matplotlib y definir el endpoint/API del modelo entrenado en Colab.
-
-
-## Datos meteorológicos incorporados
-
-Se añadieron visualizaciones y métricas calculadas desde el archivo fuente `82210-1.xlsx` (hoja `Sheet1`):
-
-- 1,826 registros diarios, del 01/01/1991 al 31/12/1995.
-- 20 columnas: fecha desglosada, temperaturas, presión, humedad, precipitación, visibilidad, viento e indicadores de fenómenos.
-- Diez visualizaciones interactivas construidas con Recharts a partir de los datos del Excel.
-- Los valores `-` se interpretan como faltantes; no se imputan.
-- La primera serie muestra promedios mensuales derivados de los registros diarios; el diagrama de dispersión utiliza una muestra de observaciones para facilitar su lectura.
-
-**Importante:** el dashboard presenta análisis exploratorio de datos. El notebook y el Excel no incluyen un modelo predictivo entrenado ni una API de inferencia, por lo que la sección de consumo de IA permanece pendiente hasta disponer de ese modelo.
+El globo animado del encabezado es [Rotating Earth](https://commons.wikimedia.org/wiki/File:Rotating_earth_(large)_transparent.gif), de Jahobr, bajo licencia [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
