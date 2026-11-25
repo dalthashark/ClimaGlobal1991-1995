@@ -32,7 +32,7 @@ function PieTooltip({ active, payload, coordinate, chartWidth }) {
   if (!active || !item) return null
 
   const cursorX = coordinate?.x ?? chartWidth / 2
-  const showOnLeft = chartWidth > 0 && cursorX > chartWidth / 2
+  const showOnLeft = chartWidth > 0 && cursorX < chartWidth / 2
   const tooltipWidth = chartWidth <= 560 ? 140 : 170
   const pieSideOffset = chartWidth <= 560 ? 12 : 165
   const targetLeft = showOnLeft
