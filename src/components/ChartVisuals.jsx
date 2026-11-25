@@ -16,7 +16,7 @@ function ChartFrame({number,title,subtitle,children}) {
 }
 function ChartVisuals() {
  return <>
-  <ChartFrame number="01" title="Temperatura media diaria" subtitle="Promedio mensual calculado a partir de los registros diarios · 1991–1995">
+  <ChartFrame number="01" title="Evolución de temperatura media" subtitle="Promedio mensual calculado a partir de los registros diarios · 1991–1995">
    <ResponsiveContainer width="100%" height="100%"><LineChart data={data.temperatureTimeline} margin={{top:10,right:12,left:-18,bottom:4}}><CartesianGrid stroke="rgba(193,220,211,.09)" strokeDasharray="3 3"/><XAxis dataKey="date" tick={axis} interval={11}/><YAxis tick={axis}/><Tooltip contentStyle={tooltipStyle}/><Line type="monotone" dataKey="value" name="Temperatura media" stroke={mint} strokeWidth={2} dot={false} activeDot={{r:4}}/></LineChart></ResponsiveContainer>
   </ChartFrame>
   <ChartFrame number="02" title="Proporción de fenómenos meteorológicos" subtitle="Días con ocurrencia registrada por fenómeno">
