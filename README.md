@@ -31,3 +31,16 @@ Configurar el proyecto en Vercel con framework Vite y comando de build `npm run 
 ## Integración pendiente
 
 Para conectar los resultados reales, añadir los PNG exportados desde Matplotlib y definir el endpoint/API del modelo entrenado en Colab.
+
+
+## Datos meteorológicos incorporados
+
+Se añadieron visualizaciones y métricas calculadas desde el archivo fuente `82210-1.xlsx` (hoja `Sheet1`):
+
+- 1,826 registros diarios, del 01/01/1991 al 31/12/1995.
+- 20 columnas: fecha desglosada, temperaturas, presión, humedad, precipitación, visibilidad, viento e indicadores de fenómenos.
+- Diez visualizaciones interactivas construidas con Recharts a partir de los datos del Excel.
+- Los valores `-` se interpretan como faltantes; no se imputan.
+- La primera serie muestra promedios mensuales derivados de los registros diarios; el diagrama de dispersión utiliza una muestra de observaciones para facilitar su lectura.
+
+**Importante:** el dashboard presenta análisis exploratorio de datos. El notebook y el Excel no incluyen un modelo predictivo entrenado ni una API de inferencia, por lo que la sección de consumo de IA permanece pendiente hasta disponer de ese modelo.
