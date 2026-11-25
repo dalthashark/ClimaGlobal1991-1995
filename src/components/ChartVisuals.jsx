@@ -101,7 +101,7 @@ function ChartVisuals() {
           <CartesianGrid stroke="rgba(193,220,211,.12)" vertical={false} />
           <XAxis dataKey="month" tick={axis} />
           <YAxis tick={axis} />
-          <Tooltip contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
+          <Tooltip cursor={false} contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
           <Bar dataKey="temperature" name="Temperatura media" fill={mint} radius={[7, 7, 0, 0]} maxBarSize={48} />
         </BarChart>
       </ResponsiveContainer>
@@ -119,7 +119,7 @@ function ChartVisuals() {
           <CartesianGrid stroke="rgba(193,220,211,.12)" horizontal={false} />
           <XAxis type="number" tick={axis} />
           <YAxis type="category" dataKey="name" tick={{ ...axis, fontSize: 11 }} width={150} />
-          <Tooltip contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
+          <Tooltip cursor={false} contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
           <Bar dataKey="days" name="Días registrados" fill="#83a9d4" radius={[0, 7, 7, 0]} maxBarSize={28} />
         </BarChart>
       </ResponsiveContainer>
@@ -156,7 +156,7 @@ function ChartVisuals() {
           <CartesianGrid stroke="rgba(193,220,211,.12)" vertical={false} />
           <XAxis dataKey="range" tick={{ ...axis, fontSize: 10 }} />
           <YAxis tick={axis} />
-          <Tooltip contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
+          <Tooltip cursor={false} contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
           <Bar dataKey="count" name="Registros" fill="#b99bd8" radius={[7, 7, 0, 0]} maxBarSize={48} />
         </BarChart>
       </ResponsiveContainer>
@@ -212,7 +212,7 @@ function ChartVisuals() {
           <CartesianGrid stroke="rgba(193,220,211,.12)" vertical={false} />
           <XAxis dataKey="month" tick={axis} />
           <YAxis tick={axis} />
-          <Tooltip contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
+          <Tooltip cursor={false} contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
           <Bar dataKey="rain" name="Precipitación acumulada" fill="#83a9d4" radius={[7, 7, 0, 0]} maxBarSize={48} />
         </BarChart>
       </ResponsiveContainer>
@@ -230,7 +230,7 @@ function ChartVisuals() {
           <CartesianGrid stroke="rgba(193,220,211,.12)" horizontal={false} />
           <XAxis type="number" tick={axis} />
           <YAxis type="category" dataKey="year" tick={axis} />
-          <Tooltip contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
+          <Tooltip cursor={false} contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
           <Bar dataKey="rain" name="Precipitación total" fill={mint} radius={[0, 7, 7, 0]} maxBarSize={34} />
         </BarChart>
       </ResponsiveContainer>
