@@ -40,46 +40,14 @@ function Sidebar({ active, onNavigate, open, onClose }) {
   </aside>
 }
 
-const chartCatalog = [
-  ["01", "Temperatura media diaria", "Línea temporal · Fecha vs. Temperatura media", "Muestra la evolución diaria de la temperatura durante 1991–1995.", ChartNoAxesCombined],
-  ["02", "Fenómenos meteorológicos", "Anillo · Frecuencia de eventos", "Compara registros de niebla, lluvia, nieve, granizo, tormentas y tornados.", CloudSun],
-  ["03", "Temperatura media por mes", "Barras verticales · Mes vs. Temperatura media", "Identifica los meses con temperaturas medias más altas o más bajas.", ThermometerSun],
-  ["04", "Frecuencia de fenómenos", "Barras horizontales · Eventos", "Muestra la cantidad de registros de cada fenómeno meteorológico.", Activity],
-  ["05", "Temperatura y humedad", "Dispersión · Temperatura media vs. Humedad relativa", "Cada punto representa un día y permite explorar la relación entre ambas variables.", Waves],
-  ["06", "Distribución de temperaturas", "Histograma · Temperatura media", "Permite observar en qué rangos de temperatura se concentran más días.", Gauge],
-  ["07", "Velocidad media del viento por año", "Línea · Año vs. Velocidad media del viento", "Compara el promedio anual de velocidad del viento.", Activity],
-  ["08", "Días con y sin precipitación", "Anillo · Días con/sin precipitación", "Compara los días con precipitación registrada frente a los días sin precipitación.", Waves],
-  ["09", "Precipitación acumulada por mes", "Barras verticales · Mes vs. Precipitación", "Compara la precipitación acumulada en cada mes durante todo el periodo.", ChartNoAxesCombined],
-  ["10", "Precipitación total por año", "Barras horizontales · Año vs. Precipitación", "Permite comparar la precipitación total registrada en cada año.", Database],
-]
-
-function ChartPlaceholder({ item }) {
-  const [number, title, type, description, Icon] = item
-  return <article className="chart-card">
-    <div className="chart-heading"><div><span className="chart-number">{number} / 10</span><h3>{title}</h3><p>{type}</p></div><button className="icon-button" aria-label="Información"><CircleHelp size={17}/></button></div>
-    <div className="empty-chart">
-      <div className="empty-icon"><Icon size={25}/></div>
-      <strong>Gráfico original de Matplotlib</strong>
-      <p>{description}</p>
-      <span className="data-tag"><span/> PENDIENTE DEL ARCHIVO 82210-1.xlsx</span>
-    </div>
-  </article>
-}
 function App() {
   const [active, setActive] = useState('overview')
   const [menuOpen, setMenuOpen] = useState(false)
-  const [question, setQuestion] = useState('')
-  const [notice, setNotice] = useState(false)
 
   const navigate = (id) => {
     setActive(id)
     setMenuOpen(false)
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  const askModel = (event) => {
-    event.preventDefault()
-    setNotice(true)
   }
 
   return <div className="app-shell">
@@ -133,8 +101,8 @@ function App() {
         </section>
 
         <section className="section-block" id="charts">
-          <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Catálogo de los 10 gráficos definidos en el notebook de Pandas y Matplotlib. Se mostrarán con los valores del Excel original.</p></div><span className="section-index">02 / 02</span></div>
-          <div className="charts-grid"><ChartVisuals /></div>
+          <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Explora una visualización a la vez. Usa los controles para avanzar y consulta una lectura breve debajo de cada gráfico.</p></div><span className="section-index">02 / 02</span></div>
+          <div className="charts-viewer"><ChartVisuals /></div>
           <div className="integration-hint"><div className="hint-icon"><Database size={18}/></div><div><strong>Visualizaciones calculadas desde 82210-1.xlsx</strong><p>Los gráficos muestran agregaciones y muestras calculadas desde los 1,826 registros diarios. Los promedios y acumulados se calcularon con Pandas; los valores faltantes no se imputaron.</p></div></div>
         </section>
 
