@@ -101,7 +101,7 @@ function App() {
           </div>
           <div className="hero-art" aria-hidden="true">
             <div className="orbit orbit-one"/><div className="orbit orbit-two"/>
-            <div className="globe"><div className="globe-grid"/><div className="globe-shine"/></div>
+            <div className="globe-stage"><div className="globe-halo"/><img className="globe-gif" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rotating_earth_(large)_transparent.gif" alt="" loading="eager"/><div className="globe-scan"/></div>
             <div className="float-chip chip-top"><ThermometerSun size={16}/><span>CLIMATE DATA</span></div>
             <div className="float-chip chip-bottom"><Activity size={16}/><span>DATA ANALYSIS</span></div>
           </div>
