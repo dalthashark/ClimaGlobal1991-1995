@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { ChartVisuals, data as climateData } from './components/ChartVisuals.jsx'
 import {
-  Activity, ArrowDownRight, ArrowUpRight, BrainCircuit, CalendarDays,
+  Activity, CalendarDays,
   ChartNoAxesCombined, ChevronDown, CircleHelp, CloudSun, Database,
   Download, ExternalLink, Gauge, Globe2, LayoutDashboard, Menu,
-  MessageSquareText, Search, ShieldCheck, Sparkles, ThermometerSun,
+  ShieldCheck, Sparkles, ThermometerSun,
   Waves, X
 } from 'lucide-react'
 
@@ -12,7 +12,6 @@ const sections = [
   { id: 'overview', label: 'Resumen general', icon: LayoutDashboard },
   { id: 'context', label: 'Contexto climático', icon: Globe2 },
   { id: 'charts', label: 'Visualizaciones', icon: ChartNoAxesCombined },
-  { id: 'model', label: 'Modelo de IA', icon: BrainCircuit },
 ]
 
 function Sidebar({ active, onNavigate, open, onClose }) {
@@ -114,12 +113,11 @@ function App() {
             <article className="stat-card"><div className="stat-top"><span>Periodo analizado</span><CalendarDays size={18}/></div><div className="stat-value">1,826</div><div className="stat-foot">Registros diarios · 1991–1995</div></article>
             <article className="stat-card"><div className="stat-top"><span>Fuente de análisis</span><Database size={18}/></div><div className="stat-value stat-text">{climateData.stats.temp_avg}</div><div className="stat-foot">Temperatura media del periodo</div></article>
             <article className="stat-card"><div className="stat-top"><span>Visualizaciones</span><ChartNoAxesCombined size={18}/></div><div className="stat-value">10</div><div className="stat-foot">Visualizaciones calculadas del Excel</div></article>
-            <article className="stat-card"><div className="stat-top"><span>Modelo de IA</span><BrainCircuit size={18}/></div><div className="stat-value stat-text">{climateData.stats.humidity_avg}%</div><div className="stat-foot">Humedad relativa media</div></article>
           </div>
         </section>
 
         <section className="section-block context-section" id="context">
-          <div className="section-intro"><div><div className="eyebrow">01 · CONTEXTO</div><h2>¿Qué estamos investigando?</h2></div><span className="section-index">01 / 03</span></div>
+          <div className="section-intro"><div><div className="eyebrow">01 · CONTEXTO</div><h2>¿Qué estamos investigando?</h2></div><span className="section-index">01 / 02</span></div>
           <div className="context-grid">
             <article className="context-main">
               <div className="context-icon"><Globe2 size={22}/></div>
@@ -129,27 +127,15 @@ function App() {
             </article>
             <article className="context-side">
               <div className="mini-icon"><Waves size={20}/></div><h3>¿Qué encontrarás aquí?</h3>
-              <ul><li><span>01</span> Contexto del problema y periodo de estudio</li><li><span>02</span> Gráficos originales generados en Colab</li><li><span>03</span> Resultados del modelo de inteligencia artificial</li></ul>
+              <ul><li><span>01</span> Contexto del problema y periodo de estudio</li><li><span>02</span> Gráficos y resultados del análisis exploratorio</li></ul>
             </article>
           </div>
         </section>
 
         <section className="section-block" id="charts">
-          <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Catálogo de los 10 gráficos definidos en el notebook de Pandas y Matplotlib. Se mostrarán con los valores del Excel original.</p></div><span className="section-index">02 / 03</span></div>
+          <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Catálogo de los 10 gráficos definidos en el notebook de Pandas y Matplotlib. Se mostrarán con los valores del Excel original.</p></div><span className="section-index">02 / 02</span></div>
           <div className="charts-grid"><ChartVisuals /></div>
           <div className="integration-hint"><div className="hint-icon"><Database size={18}/></div><div><strong>Visualizaciones calculadas desde 82210-1.xlsx</strong><p>Los gráficos muestran agregaciones y muestras calculadas desde los 1,826 registros diarios. Los promedios y acumulados se calcularon con Pandas; los valores faltantes no se imputaron.</p></div></div>
-        </section>
-
-        <section className="section-block model-section" id="model">
-          <div className="section-intro"><div><div className="eyebrow">03 · INTELIGENCIA ARTIFICIAL</div><h2>Explora el modelo de IA</h2><p className="section-description">Interfaz preparada para consumir el modelo entrenado en la Fase 1.</p></div><span className="section-index">03 / 03</span></div>
-          <div className="model-panel">
-            <div className="model-visual"><div className="neural-orbit"><BrainCircuit size={42}/><span/><i/><b/></div><div className="model-label"><span/> MODELO PENDIENTE DE CONEXIÓN</div></div>
-            <div className="model-content"><div className="model-kicker"><Sparkles size={15}/> CLIMATE AI</div><h3>Consulta el modelo</h3><p>Cuando se conecte la API del modelo, esta sección permitirá enviar datos de entrada y mostrar la respuesta generada por la inteligencia artificial.</p>
-              <form className="model-form" onSubmit={askModel}><label htmlFor="model-question">Consulta o dato de entrada</label><div className="input-wrap"><Search size={17}/><input id="model-question" value={question} onChange={e => {setQuestion(e.target.value);setNotice(false)}} placeholder="La integración se habilitará al conectar el modelo..." disabled/><button type="submit" disabled><ArrowUpRight size={17}/></button></div></form>
-              {notice && <div className="form-note">La API todavía no está configurada. No se generó ninguna predicción.</div>}
-              <div className="model-foot"><ShieldCheck size={15}/> Los resultados se mostrarán cuando la conexión esté validada.</div>
-            </div>
-          </div>
         </section>
 
         <footer className="footer"><div className="footer-brand"><CloudSun size={18}/><strong>ClimateIQ</strong><span>·</span><span>Dashboard académico</span></div><span>Análisis meteorológico · 82210-1.xlsx · 1991–1995</span></footer>
