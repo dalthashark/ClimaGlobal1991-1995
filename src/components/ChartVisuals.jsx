@@ -130,7 +130,7 @@ function ChartVisuals() {
       number="05"
       title="Relación entre temperatura y humedad"
       subtitle="Muestra de observaciones diarias · cada punto representa un registro"
-      explanation="En la muestra se observa una tendencia general: los días más cálidos suelen presentar menor humedad relativa, aunque existen variaciones entre observaciones."
+      explanation="Los puntos representan las observaciones y la línea de regresión resume su tendencia general: a mayor temperatura, la humedad relativa tiende a disminuir. La línea ayuda a identificar esa relación sin ocultar la variación de los datos."
     >
       <ResponsiveContainer width="100%" height="100%">
         <ScatterChart margin={{ top: 18, right: 24, left: 8, bottom: 12 }}>
@@ -139,7 +139,16 @@ function ChartVisuals() {
           <YAxis type="number" dataKey="humidity" name="Humedad relativa" tick={axis} />
           <ZAxis range={[42, 42]} />
           <Tooltip cursor={{ strokeDasharray: '4 4' }} contentStyle={tooltipStyle} itemStyle={tooltipItemStyle} labelStyle={tooltipLabelStyle} />
-          <Scatter data={data.scatter} fill={mint} fillOpacity={0.78} />
+          <Scatter data={data.scatter} name="Observaciones" fill={mint} fillOpacity={0.78} />
+          <Scatter
+            data={data.scatter}
+            name="Regresión lineal"
+            line={{ stroke: '#d8b978', strokeWidth: 2.5, strokeDasharray: '6 4' }}
+            lineType="fitting"
+            shape={() => null}
+            legendType="line"
+          />
+          <Legend verticalAlign="bottom" align="center" wrapperStyle={legendStyle} />
         </ScatterChart>
       </ResponsiveContainer>
     </ChartFrame>,
