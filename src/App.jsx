@@ -112,7 +112,7 @@ function App() {
           <div className="section-intro"><div><div className="eyebrow">VISTA RÁPIDA</div><h2>Estado del análisis</h2></div><span className="muted-caption">Información del proyecto</span></div>
           <div className="stats-grid">
             <article className="stat-card"><div className="stat-top"><span>Periodo analizado</span><CalendarDays size={18}/></div><div className="stat-value">1,826</div><div className="stat-foot">Registros diarios · 1991–1995</div></article>
-            <article className="stat-card"><div className="stat-top"><span>Fuente de análisis</span><Database size={18}/></div><div className="stat-value stat-text">{climateData.stats.temp_avg}°</div><div className="stat-foot">Temperatura media del periodo</div></article>
+            <article className="stat-card"><div className="stat-top"><span>Fuente de análisis</span><Database size={18}/></div><div className="stat-value stat-text">{climateData.stats.temp_avg}</div><div className="stat-foot">Temperatura media del periodo</div></article>
             <article className="stat-card"><div className="stat-top"><span>Visualizaciones</span><ChartNoAxesCombined size={18}/></div><div className="stat-value">10</div><div className="stat-foot">Visualizaciones calculadas del Excel</div></article>
             <article className="stat-card"><div className="stat-top"><span>Modelo de IA</span><BrainCircuit size={18}/></div><div className="stat-value stat-text">{climateData.stats.humidity_avg}%</div><div className="stat-foot">Humedad relativa media</div></article>
           </div>
