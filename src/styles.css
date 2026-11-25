@@ -6,3 +6,5 @@
 @media(max-width:380px){.hero h1{font-size:31px}.hero-meta{gap:12px;font-size:9px}.stat-card{padding:11px}.stat-top{font-size:9px}.stat-value{font-size:18px}.stat-text{font-size:14px}}
 
 .chart-number{display:block;color:#83c9a9;font-size:9px;letter-spacing:1.3px;margin-bottom:7px}.charts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-card{min-width:0}@media(max-width:760px){.charts-grid{grid-template-columns:1fr}}
+
+.chart-number{display:inline-block;color:#8bd8bd;font-size:9px;letter-spacing:1.2px;font-weight:700;margin-bottom:7px}.chart-plot{height:235px;margin-top:16px;border-top:1px solid var(--line);padding-top:13px;min-width:0}.chart-plot .recharts-cartesian-axis-tick-value{fill:#82978f}.chart-plot .recharts-legend-item-text{color:#b6c8bf!important}@media(max-width:760px){.chart-plot{height:220px}}
