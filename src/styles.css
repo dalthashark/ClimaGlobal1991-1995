@@ -48,17 +48,16 @@
 
 /* Tooltip de gráficos circulares: se coloca al lado contrario del cursor y se conecta al sector */
 .pie-tooltip{position:relative;display:flex;align-items:center;gap:9px;min-width:138px;padding:10px 12px;border:1px solid #d7e2df;border-radius:9px;background:#fff;color:#20343b;font-size:12px;white-space:nowrap;box-shadow:0 8px 24px rgba(20,38,45,.18);pointer-events:none;z-index:30}
-.pie-tooltip-right{transform:translate(20px,-50%)}
-.pie-tooltip-left{transform:translate(calc(-100% - 20px),-50%)}
-.pie-tooltip::before{content:'';position:absolute;top:50%;width:20px;height:1.5px;background:var(--tooltip-accent);opacity:.95}
-.pie-tooltip-right::before{left:-20px}
-.pie-tooltip-left::before{right:-20px}
+.pie-tooltip-right,.pie-tooltip-left{transform:none}
+.pie-tooltip::before{content:'';position:absolute;top:50%;width:var(--connector-length);height:1.5px;background:var(--tooltip-accent);opacity:.95}
+.pie-tooltip-right::before{left:calc(-1 * var(--connector-length))}
+.pie-tooltip-left::before{right:calc(-1 * var(--connector-length))}
 .pie-tooltip-anchor{position:absolute;top:calc(50% - 3px);width:6px;height:6px;border-radius:50%;background:var(--tooltip-accent);box-shadow:0 0 0 2px rgba(255,255,255,.9)}
-.pie-tooltip-right .pie-tooltip-anchor{left:-23px}
-.pie-tooltip-left .pie-tooltip-anchor{right:-23px}
+.pie-tooltip-right .pie-tooltip-anchor{left:calc(-1 * var(--connector-length) - 3px)}
+.pie-tooltip-left .pie-tooltip-anchor{right:calc(-1 * var(--connector-length) - 3px)}
 .pie-tooltip-swatch{width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:var(--tooltip-accent)}
 .pie-tooltip-copy{display:grid;gap:3px}
 .pie-tooltip-label{color:#526b70;font-size:11px;font-weight:600}
 .pie-tooltip-copy strong{color:#20343b;font-size:13px;font-weight:700}
 .pie-tooltip-copy small{color:#71868a;font-size:10px;font-weight:500}
-@media(max-width:760px){.pie-tooltip{min-width:124px;padding:8px 10px}.pie-tooltip-right{transform:translate(15px,-50%)}.pie-tooltip-left{transform:translate(calc(-100% - 15px),-50%)}.pie-tooltip::before{width:15px}.pie-tooltip-right::before{left:-15px}.pie-tooltip-left::before{right:-15px}.pie-tooltip-right .pie-tooltip-anchor{left:-18px}.pie-tooltip-left .pie-tooltip-anchor{right:-18px}}
+@media(max-width:760px){.pie-tooltip{min-width:124px;padding:8px 10px}.pie-tooltip::before{height:1.5px}}
