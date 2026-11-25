@@ -138,7 +138,7 @@ function App() {
           <div className="integration-hint"><div className="hint-icon"><Database size={18}/></div><div><strong>Visualizaciones calculadas desde 82210-1.xlsx</strong><p>Los gráficos muestran agregaciones y muestras calculadas desde los 1,826 registros diarios. Los promedios y acumulados se calcularon con Pandas; los valores faltantes no se imputaron.</p></div></div>
         </section>
 
-        <footer className="footer"><div className="footer-brand"><CloudSun size={18}/><strong>ClimateIQ</strong><span>·</span><span>Dashboard académico</span></div><span>Análisis meteorológico · 82210-1.xlsx · 1991–1995</span></footer>
+        <footer className="footer"><div className="footer-brand"><CloudSun size={18}/><strong>ClimateIQ</strong><span>·</span><span>Dashboard académico</span></div><div className="footer-credits"><span>Análisis meteorológico · 82210-1.xlsx · 1991–1995</span><a href="https://commons.wikimedia.org/wiki/File:Rotating_earth_(large)_transparent.gif" target="_blank" rel="noreferrer">Globo animado: Jahobr / Wikimedia Commons · CC BY-SA 3.0</a></div></footer>
       </div>
     </main>
   </div>
