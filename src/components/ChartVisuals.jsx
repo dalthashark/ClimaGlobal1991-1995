@@ -33,11 +33,13 @@ function PieTooltip({ active, payload, coordinate, chartWidth }) {
 
   const cursorX = coordinate?.x ?? chartWidth / 2
   const showOnLeft = chartWidth > 0 && cursorX > chartWidth / 2
-  const tooltipWidth = 170
-  const connectorLength = showOnLeft ? cursorX + 12 : Math.max(12, chartWidth - cursorX + 12)
-  const horizontalOffset = showOnLeft
-    ? -(cursorX + tooltipWidth + 12)
-    : Math.max(12, chartWidth - cursorX + 12)
+  const tooltipWidth = chartWidth <= 560 ? 140 : 170
+  const pieSideOffset = chartWidth <= 560 ? 12 : 165
+  const targetLeft = showOnLeft
+    ? Math.max(8, chartWidth / 2 - pieSideOffset - tooltipWidth)
+    : Math.min(chartWidth - tooltipWidth - 8, chartWidth / 2 + pieSideOffset)
+  const connectorLength = 18
+  const horizontalOffset = targetLeft - cursorX
   const label = item.name || item.payload?.name || 'Registro'
   const value = Number(item.value ?? 0).toLocaleString('es-PE')
   const accent = item.color || item.payload?.fill || mint
