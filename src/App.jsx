@@ -40,18 +40,31 @@ function Sidebar({ active, onNavigate, open, onClose }) {
   </aside>
 }
 
-function EmptyChart({ title, subtitle, icon: Icon }) {
-  return <div className="chart-card">
-    <div className="chart-heading"><div><h3>{title}</h3><p>{subtitle}</p></div><button className="icon-button" aria-label="Información"><CircleHelp size={17}/></button></div>
+const chartCatalog = [
+  ["01", "Temperatura media diaria", "Línea temporal · Fecha vs. Temperatura media", "Muestra la evolución diaria de la temperatura durante 1991–1995.", ChartNoAxesCombined],
+  ["02", "Fenómenos meteorológicos", "Anillo · Frecuencia de eventos", "Compara registros de niebla, lluvia, nieve, granizo, tormentas y tornados.", CloudSun],
+  ["03", "Temperatura media por mes", "Barras verticales · Mes vs. Temperatura media", "Identifica los meses con temperaturas medias más altas o más bajas.", ThermometerSun],
+  ["04", "Frecuencia de fenómenos", "Barras horizontales · Eventos", "Muestra la cantidad de registros de cada fenómeno meteorológico.", Activity],
+  ["05", "Temperatura y humedad", "Dispersión · Temperatura media vs. Humedad relativa", "Cada punto representa un día y permite explorar la relación entre ambas variables.", Waves],
+  ["06", "Distribución de temperaturas", "Histograma · Temperatura media", "Permite observar en qué rangos de temperatura se concentran más días.", Gauge],
+  ["07", "Velocidad media del viento por año", "Línea · Año vs. Velocidad media del viento", "Compara el promedio anual de velocidad del viento.", Activity],
+  ["08", "Días con y sin precipitación", "Anillo · Días con/sin precipitación", "Compara los días con precipitación registrada frente a los días sin precipitación.", Waves],
+  ["09", "Precipitación acumulada por mes", "Barras verticales · Mes vs. Precipitación", "Compara la precipitación acumulada en cada mes durante todo el periodo.", ChartNoAxesCombined],
+  ["10", "Precipitación total por año", "Barras horizontales · Año vs. Precipitación", "Permite comparar la precipitación total registrada en cada año.", Database],
+]
+
+function ChartPlaceholder({ item }) {
+  const [number, title, type, description, Icon] = item
+  return <article className="chart-card">
+    <div className="chart-heading"><div><span className="chart-number">{number} / 10</span><h3>{title}</h3><p>{type}</p></div><button className="icon-button" aria-label="Información"><CircleHelp size={17}/></button></div>
     <div className="empty-chart">
       <div className="empty-icon"><Icon size={25}/></div>
-      <strong>Visualización pendiente de datos</strong>
-      <p>Se incorporará aquí el gráfico original exportado desde Google Colab (Matplotlib).</p>
-      <span className="data-tag"><span/> ESPERANDO DATOS DE FASE 1</span>
+      <strong>Gráfico original de Matplotlib</strong>
+      <p>{description}</p>
+      <span className="data-tag"><span/> PENDIENTE DEL ARCHIVO 82210-1.xlsx</span>
     </div>
-  </div>
+  </article>
 }
-
 function App() {
   const [active, setActive] = useState('overview')
   const [menuOpen, setMenuOpen] = useState(false)
@@ -123,10 +136,9 @@ function App() {
         <section className="section-block" id="charts">
           <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Espacio reservado para presentar los gráficos de Matplotlib generados durante la Fase 1.</p></div><span className="section-index">02 / 03</span></div>
           <div className="charts-grid">
-            <EmptyChart title="Evolución de variables climáticas" subtitle="Comportamiento durante 1991–1995" icon={ChartNoAxesCombined}/>
-            <EmptyChart title="Distribución de los datos" subtitle="Patrones identificados en el conjunto de datos" icon={Gauge}/>
+            {chartCatalog.map(item => <ChartPlaceholder key={item[0]} item={item}/>)}
           </div>
-          <div className="integration-hint"><div className="hint-icon"><Download size={18}/></div><div><strong>¿Cómo se completará esta sección?</strong><p>Exportaremos las figuras desde Colab en formato PNG y las integraremos aquí sin alterar sus resultados.</p></div></div>
+          <div className="integration-hint"><div className="hint-icon"><Download size={18}/></div><div><strong>Los 10 gráficos del notebook ya están identificados</strong><p>El notebook contiene el código Matplotlib, pero no guarda las figuras generadas ni incluye el Excel fuente. Al incorporar 82210-1.xlsx se podrán ejecutar los cálculos y publicar aquí las visualizaciones reales.</p></div></div>
         </section>
 
         <section className="section-block model-section" id="model">
