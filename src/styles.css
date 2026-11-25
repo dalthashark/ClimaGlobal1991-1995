@@ -8,3 +8,22 @@
 .chart-number{display:block;color:#83c9a9;font-size:9px;letter-spacing:1.3px;margin-bottom:7px}.charts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-card{min-width:0}@media(max-width:760px){.charts-grid{grid-template-columns:1fr}}
 
 .chart-number{display:inline-block;color:#8bd8bd;font-size:9px;letter-spacing:1.2px;font-weight:700;margin-bottom:7px}.chart-plot{height:235px;margin-top:16px;border-top:1px solid var(--line);padding-top:13px;min-width:0}.chart-plot .recharts-cartesian-axis-tick-value{fill:#82978f}.chart-plot .recharts-legend-item-text{color:#b6c8bf!important}@media(max-width:760px){.chart-plot{height:220px}}
+
+
+/* --- Ambientación visual: planeta animado y órbitas --- */
+.hero-art{isolation:isolate}
+.globe-stage{position:relative;width:260px;height:260px;display:grid;place-items:center;z-index:1;filter:drop-shadow(0 18px 35px rgba(83,190,151,.22))}
+.globe-gif{position:relative;z-index:2;width:250px;height:250px;object-fit:contain;animation:planet-hover 7s ease-in-out infinite;filter:saturate(.9) drop-shadow(0 0 24px rgba(116,213,176,.2))}
+.globe-halo{position:absolute;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,rgba(103,204,164,.2),rgba(66,153,137,.08) 55%,transparent 72%);filter:blur(8px);animation:halo-pulse 5s ease-in-out infinite}
+.globe-scan{position:absolute;z-index:3;width:270px;height:270px;border:1px solid rgba(173,229,197,.19);border-radius:50%;transform:rotate(-24deg) scaleY(.42);animation:orbit-turn 18s linear infinite;pointer-events:none}
+.orbit-one{animation:orbit-turn 24s linear infinite}
+.orbit-two{animation:orbit-turn 32s linear infinite reverse}
+.float-chip{backdrop-filter:blur(10px);animation:chip-float 5s ease-in-out infinite}
+.chip-bottom{animation-delay:-2.5s}
+.stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@keyframes planet-hover{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-9px) scale(1.025)}}
+@keyframes halo-pulse{0%,100%{opacity:.55;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes orbit-turn{from{rotate:0deg}to{rotate:360deg}}
+@keyframes chip-float{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@media(max-width:760px){.globe-stage{width:160px;height:160px}.globe-gif{width:158px;height:158px}.globe-halo{width:140px;height:140px}.globe-scan{width:170px;height:170px}}
+@media(prefers-reduced-motion:reduce){.globe-gif,.globe-halo,.globe-scan,.orbit-one,.orbit-two,.float-chip{animation:none!important}}
