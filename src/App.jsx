@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ChartVisuals, data as climateData } from './components/ChartVisuals.jsx'
 import {
   Activity, ArrowDownRight, ArrowUpRight, BrainCircuit, CalendarDays,
   ChartNoAxesCombined, ChevronDown, CircleHelp, CloudSun, Database,
@@ -110,10 +111,10 @@ function App() {
         <section className="section-block" aria-label="Indicadores del proyecto">
           <div className="section-intro"><div><div className="eyebrow">VISTA RÁPIDA</div><h2>Estado del análisis</h2></div><span className="muted-caption">Información del proyecto</span></div>
           <div className="stats-grid">
-            <article className="stat-card"><div className="stat-top"><span>Periodo analizado</span><CalendarDays size={18}/></div><div className="stat-value">1991–95</div><div className="stat-foot">Cinco años de observación</div></article>
-            <article className="stat-card"><div className="stat-top"><span>Fuente de análisis</span><Database size={18}/></div><div className="stat-value stat-text">Google Colab</div><div className="stat-foot">Notebook de la Fase 1</div></article>
-            <article className="stat-card"><div className="stat-top"><span>Visualizaciones</span><ChartNoAxesCombined size={18}/></div><div className="stat-value">Por integrar</div><div className="stat-foot">Gráficos originales de Matplotlib</div></article>
-            <article className="stat-card"><div className="stat-top"><span>Modelo de IA</span><BrainCircuit size={18}/></div><div className="stat-value">Por conectar</div><div className="stat-foot">Integración con el modelo entrenado</div></article>
+            <article className="stat-card"><div className="stat-top"><span>Periodo analizado</span><CalendarDays size={18}/></div><div className="stat-value">1,826</div><div className="stat-foot">Registros diarios · 1991–1995</div></article>
+            <article className="stat-card"><div className="stat-top"><span>Fuente de análisis</span><Database size={18}/></div><div className="stat-value stat-text">{climateData.stats.temp_avg}°</div><div className="stat-foot">Temperatura media del periodo</div></article>
+            <article className="stat-card"><div className="stat-top"><span>Visualizaciones</span><ChartNoAxesCombined size={18}/></div><div className="stat-value">10</div><div className="stat-foot">Visualizaciones calculadas del Excel</div></article>
+            <article className="stat-card"><div className="stat-top"><span>Modelo de IA</span><BrainCircuit size={18}/></div><div className="stat-value stat-text">{climateData.stats.humidity_avg}%</div><div className="stat-foot">Humedad relativa media</div></article>
           </div>
         </section>
 
@@ -135,10 +136,8 @@ function App() {
 
         <section className="section-block" id="charts">
           <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Catálogo de los 10 gráficos definidos en el notebook de Pandas y Matplotlib. Se mostrarán con los valores del Excel original.</p></div><span className="section-index">02 / 03</span></div>
-          <div className="charts-grid">
-            {chartCatalog.map(item => <ChartPlaceholder key={item[0]} item={item}/>)}
-          </div>
-          <div className="integration-hint"><div className="hint-icon"><Download size={18}/></div><div><strong>Los 10 gráficos del notebook ya están identificados</strong><p>El notebook contiene el código Matplotlib, pero no guarda las figuras generadas ni incluye el Excel fuente. Al incorporar 82210-1.xlsx se podrán ejecutar los cálculos y publicar aquí las visualizaciones reales.</p></div></div>
+          <div className="charts-grid"><ChartVisuals /></div>
+          <div className="integration-hint"><div className="hint-icon"><Database size={18}/></div><div><strong>Visualizaciones calculadas desde 82210-1.xlsx</strong><p>Los gráficos muestran agregaciones y muestras calculadas desde los 1,826 registros diarios. Los promedios y acumulados se calcularon con Pandas; los valores faltantes no se imputaron.</p></div></div>
         </section>
 
         <section className="section-block model-section" id="model">
