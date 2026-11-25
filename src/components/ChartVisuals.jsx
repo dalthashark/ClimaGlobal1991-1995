@@ -31,7 +31,13 @@ function PieTooltip({ active, payload, coordinate, chartWidth }) {
   const item = payload?.[0]
   if (!active || !item) return null
 
-  const showOnLeft = chartWidth > 0 && coordinate?.x > chartWidth / 2
+  const cursorX = coordinate?.x ?? chartWidth / 2
+  const showOnLeft = chartWidth > 0 && cursorX > chartWidth / 2
+  const tooltipWidth = 170
+  const connectorLength = showOnLeft ? cursorX + 12 : Math.max(12, chartWidth - cursorX + 12)
+  const horizontalOffset = showOnLeft
+    ? -(cursorX + tooltipWidth + 12)
+    : Math.max(12, chartWidth - cursorX + 12)
   const label = item.name || item.payload?.name || 'Registro'
   const value = Number(item.value ?? 0).toLocaleString('es-PE')
   const accent = item.color || item.payload?.fill || mint
@@ -39,7 +45,11 @@ function PieTooltip({ active, payload, coordinate, chartWidth }) {
   return (
     <div
       className={`pie-tooltip ${showOnLeft ? 'pie-tooltip-left' : 'pie-tooltip-right'}`}
-      style={{ '--tooltip-accent': accent }}
+      style={{
+        '--tooltip-accent': accent,
+        '--connector-length': `${connectorLength}px`,
+        transform: `translate(${horizontalOffset}px, -50%)`
+      }}
     >
       <span className="pie-tooltip-anchor" />
       <span className="pie-tooltip-swatch" />
@@ -221,7 +231,7 @@ function ChartVisuals() {
       subtitle="Clasificación según la precipitación diaria registrada"
       explanation="Se registraron 298 días con precipitación y 1,526 sin precipitación. Por lo tanto, predominan claramente los días secos en el conjunto analizado."
     >
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" onResize={setPieChartWidth}>
         <PieChart>
           <Pie data={data.precipitationDays} dataKey="days" nameKey="name" innerRadius="48%" outerRadius="72%" paddingAngle={3} stroke="none">
             {data.precipitationDays.map((item, index) => (
