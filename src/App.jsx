@@ -55,15 +55,15 @@ function App() {
     <Sidebar active={active} onNavigate={navigate} open={menuOpen} onClose={() => setMenuOpen(false)}/>
     <main className="main-content">
       <header className="topbar">
-        <div className="topbar-left"><button className="icon-button menu-trigger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú"><Menu size={20}/></button><span>Workspace</span><span className="crumb">/</span><strong>Climate overview</strong></div>
-        <div className="topbar-right"><span className="live-status"><i/> PROYECTO EN DESARROLLO</span><div className="avatar">CI</div></div>
+        <div className="topbar-left"><button className="icon-button menu-trigger" onClick={() => setMenuOpen(true)} aria-label="Abrir menú"><Menu size={20}/></button><span>Observatorio</span><span className="crumb">/</span><strong>Análisis climático</strong></div>
+        <div className="topbar-right"><span className="live-status"><i/> ESTUDIO HISTÓRICO</span><div className="avatar">CI</div></div>
       </header>
 
       <div className="page-wrap">
         <section className="hero" id="overview">
           <div className="hero-copy">
             <div className="eyebrow"><span className="eyebrow-line"/> OBSERVATORIO CLIMÁTICO GLOBAL</div>
-            <h1>Explorar el tiempo.<br/><em>Entender sus patrones.</em></h1>
+            <h1>Clima global.<br/><em>1991 — 1995.</em></h1>
             <p>Análisis exploratorio de datos meteorológicos diarios de 1991–1995. El notebook utiliza Pandas para limpiar y preparar el archivo 82210-1.xlsx, y Matplotlib para estudiar temperatura, humedad, presión, viento, precipitación y fenómenos meteorológicos.</p>
             <div className="hero-meta"><span><CalendarDays size={15}/> 1991 — 1995</span><span><Globe2 size={15}/> Perspectiva global</span></div>
           </div>
@@ -78,8 +78,8 @@ function App() {
         <section className="section-block" aria-label="Indicadores del proyecto">
           <div className="section-intro"><div><div className="eyebrow">VISTA RÁPIDA</div><h2>Estado del análisis</h2></div><span className="muted-caption">Información del proyecto</span></div>
           <div className="stats-grid">
-            <article className="stat-card"><div className="stat-top"><span>Periodo analizado</span><CalendarDays size={18}/></div><div className="stat-value">1,826</div><div className="stat-foot">Registros diarios · 1991–1995</div></article>
-            <article className="stat-card"><div className="stat-top"><span>Fuente de análisis</span><Database size={18}/></div><div className="stat-value stat-text">{climateData.stats.temp_avg}</div><div className="stat-foot">Temperatura media del periodo</div></article>
+            <article className="stat-card"><div className="stat-top"><span>Registros analizados</span><CalendarDays size={18}/></div><div className="stat-value">1,826</div><div className="stat-foot">Registros diarios · 1991–1995</div></article>
+            <article className="stat-card"><div className="stat-top"><span>Temperatura media</span><Database size={18}/></div><div className="stat-value stat-text">{climateData.stats.temp_avg}</div><div className="stat-foot">Temperatura media del periodo</div></article>
             <article className="stat-card"><div className="stat-top"><span>Visualizaciones</span><ChartNoAxesCombined size={18}/></div><div className="stat-value">10</div><div className="stat-foot">Visualizaciones calculadas del Excel</div></article>
           </div>
         </section>
@@ -101,7 +101,7 @@ function App() {
         </section>
 
         <section className="section-block" id="charts">
-          <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Explora una visualización a la vez. Usa los controles para avanzar y consulta una lectura breve debajo de cada gráfico.</p></div><span className="section-index">02 / 02</span></div>
+          <div className="section-intro"><div><div className="eyebrow">02 · EXPLORACIÓN DE DATOS</div><h2>Visualizaciones del análisis</h2><p className="section-description">Selecciona cualquier gráfico o avanza en orden. Activa el modo exposición para proyectar los resultados y consulta la interpretación debajo de cada gráfico.</p></div><span className="section-index">02 / 02</span></div>
           <div className="charts-viewer"><ChartVisuals /></div>
           <div className="integration-hint"><div className="hint-icon"><Database size={18}/></div><div><strong>Visualizaciones calculadas desde 82210-1.xlsx</strong><p>Los gráficos muestran agregaciones y muestras calculadas desde los 1,826 registros diarios. Los promedios y acumulados se calcularon con Pandas; los valores faltantes no se imputaron.</p></div></div>
         </section>

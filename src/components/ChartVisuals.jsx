@@ -8,7 +8,7 @@ import data from '../data/climateData.json'
 
 const mint = '#8bd8bd'
 const palette = ['#8bd8bd', '#d8b978', '#83a9d4', '#b99bd8', '#d98e91', '#8ca7a0']
-const axis = { fill: '#a9bcb4', fontSize: 11 }
+const axis = { fill: '#a9bcb4', fontSize: 13 }
 const tooltipStyle = {
   background: '#ffffff',
   border: '1px solid #d7e2df',
@@ -19,7 +19,7 @@ const tooltipStyle = {
 }
 const tooltipItemStyle = { color: '#20343b', padding: '2px 0' }
 const tooltipLabelStyle = { color: '#526b70', fontWeight: 600, marginBottom: 4 }
-const legendStyle = { fontSize: 11, color: '#b6c8bf', paddingTop: 10 }
+const legendStyle = { fontSize: 13, color: '#b6c8bf', paddingTop: 10 }
 const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
 
 function formatMonth(value) {
@@ -86,6 +86,7 @@ function ChartFrame({ number, title, subtitle, explanation, children }) {
 function ChartVisuals() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [pieChartWidth, setPieChartWidth] = useState(0)
+  const [presenting, setPresenting] = useState(false)
 
   const charts = [
     <ChartFrame
@@ -289,6 +290,8 @@ function ChartVisuals() {
 
   return (
     <>
+      <div className={`chart-experience ${presenting ? 'presentation-mode' : ''}`} role="region" aria-label="Explorador de gráficos" onKeyDown={event => { if (event.key === 'Escape') setPresenting(false); if (event.target.tagName !== 'SELECT' && event.key === 'ArrowLeft') goToPrevious(); if (event.target.tagName !== 'SELECT' && event.key === 'ArrowRight') goToNext() }}>
+      <div className="chart-toolbar"><label htmlFor="chart-select">Explorar los 10 gráficos</label><select id="chart-select" value={activeIndex} onChange={event => setActiveIndex(Number(event.target.value))}>{charts.map((chart, index) => <option key={chart.key} value={index}>{String(index + 1).padStart(2, '0')} · {chart.props.title}</option>)}</select><button className="chart-nav-button" type="button" aria-pressed={presenting} onClick={() => setPresenting(value => !value)}>{presenting ? 'Salir de exposición' : 'Modo exposición'}</button></div>
       {charts[activeIndex]}
       <nav className="chart-navigation" aria-label="Navegación de gráficos">
         <button className="chart-nav-button" type="button" onClick={goToPrevious} disabled={activeIndex === 0}>
@@ -309,6 +312,7 @@ function ChartVisuals() {
           <ChevronRight size={17} />
         </button>
       </nav>
+      </div>
     </>
   )
 }
